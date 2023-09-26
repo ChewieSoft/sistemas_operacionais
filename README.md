@@ -1,2 +1,19 @@
-# sistemas_operacionais
-Trabalhos da Matéria de Sistemas Operacinais lecionada pelo professor Miguel Angelo Zaccur de Figueiredo
+# Sistemas Operacionais
+
+## Trabalhos da Matéria de Sistemas Operacionais lecionada pelo professor Miguel Angelo Zaccur de Figueiredo
+
+Esse trabalho pode ser executado de várias maneiras, vamos sugeir duas formas:
+
+### 1. Rodando o projeto diretamente via Google Colab
+
+[Google Colab - Produtor - Consumidor via Python](https://colab.research.google.com/drive/1g5h8Gy58Ts-NNwNSOh-ws_rxD0IDhL2J#scrollTo=g-MFcfSd9LoU)
+
+----
+
+### 2. Rodando o projeto via Visual Studio Code
+
+* Instale o [Visual Studio Code](https://code.visualstudio.com/download)
+
+* Instale o [Python](https://www.python.org/downloads/)
+
+ℹ️ Para este trabalho foi utilizado a versão **3.11.5** do Python, link direto para o instalador aqui: [Python 3.11.5](https://www.python.org/ftp/python/3.11.5/python-3.11.5-amd64.exe)
