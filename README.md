@@ -22,6 +22,7 @@ Esse trabalho pode ser executado de várias maneiras, vamos sugeir duas formas:
 
 * [ANSI Colors](https://gist.github.com/JBlond/2fea43a3049b38287e5e9cefc87b2124)
 * [How to print emojis using Unicodes in python](https://www.educative.io/answers/how-to-print-emojis-using-unicodes-in-python)
+* [Python Console Colors - Easy Tutorial](https://www.youtube.com/watch?v=u4QmAIoo4i0&ab_channel=LearnLearnScratchTutorials)
 
 [def]: https://colab.research.google.com/drive/1g5h8Gy58Ts-NNwNSOh-ws_rxD0IDhL2J#scrollTo=g-MFcfSd9LoU
 [def2]: https://code.visualstudio.com/download
