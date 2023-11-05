@@ -48,15 +48,15 @@ class Program
             string[] lines = File.ReadAllLines("Processos.txt");
 
             int totalProcessos = int.Parse(lines[0]);
-            for (int i = 1; i <= totalProcessos; i++)
+            for (int contador = 1; contador <= totalProcessos; contador++)
             {
-                string[] data = lines[i].Split(' ');
+                string[] data = lines[contador].Split(' ');
 
                 int ingresso = int.Parse(data[0]);
                 int tempoExecucao = int.Parse(data[1]);
                 int prioridadeEstatica = int.Parse(data[2]);
 
-                Processo processo = new Processo(i, tempoExecucao, ingresso, prioridadeEstatica);
+                Processo processo = new Processo(contador, tempoExecucao, ingresso, prioridadeEstatica);
                 listaProcessoRaw.InserirProcesso(processo);
             }
         }
@@ -128,12 +128,12 @@ class Program
 
     static void Imprimir(ListaProcesso listaProcesso)
     {
-        Console.WriteLine("Ingresso | PID    | Tempo Restante | Prioridade Dinamica");
+        Console.WriteLine("Ingresso | PID   | Tempo Restante | Prioridade Dinamica");
         foreach (Processo processo in listaProcesso.Processos)
         {
-            Console.WriteLine($"{processo.Ingresso}     | {processo.TarefaId}     | {processo.TempoRemanescente}            | {processo.PrioridadeDinamica}");
+            Console.WriteLine($"{processo.Ingresso}        | {processo.TarefaId}     | {processo.TempoRemanescente.ToString("00")}             | {processo.PrioridadeDinamica.ToString("00")}");
         }
-        Console.WriteLine("-----------------------------------------------------------------------------\n");
+        Console.WriteLine("--------------------------------------------------------\n");
     }
 }
 
