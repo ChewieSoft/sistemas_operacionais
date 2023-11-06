@@ -8,16 +8,16 @@ namespace escalonador
 {
     internal class Processo
     {
-        public int TarefaId { get; set; }
+        public int ProcessoId { get; set; }
         public int TempoExecucao { get; set; }
         public int TempoRemanescente { get; set; }
         public int Ingresso { get; set; }
         public int PrioridadeEstatica { get; set; }
         public int PrioridadeDinamica { get; set; }
 
-        public Processo(int tarefaId, int tempoExecucao, int ingresso, int prioridadeEstatica)
+        public Processo(int processoId, int tempoExecucao, int ingresso, int prioridadeEstatica)
         {
-            TarefaId = tarefaId;
+            ProcessoId = processoId;
             TempoExecucao = tempoExecucao;
             TempoRemanescente = tempoExecucao;
             Ingresso = ingresso;

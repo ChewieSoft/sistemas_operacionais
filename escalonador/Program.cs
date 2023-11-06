@@ -122,7 +122,7 @@ class Program
     static void ImprimirInfos(int cycle, ListaProcesso listaProcesso, Processo processo)
     {
         Console.WriteLine($"Ciclo: {cycle}");
-        Console.WriteLine($"Processo ID: {processo.TarefaId}");
+        Console.WriteLine($"Processo ID: {processo.ProcessoId}");
         Console.WriteLine($"Processo Qtd.: {listaProcesso.Processos.Count}\n");
     }
 
@@ -131,7 +131,7 @@ class Program
         Console.WriteLine("Ingresso | PID   | Tempo Restante | Prioridade Dinamica");
         foreach (Processo processo in listaProcesso.Processos)
         {
-            Console.WriteLine($"{processo.Ingresso}        | {processo.TarefaId}     | {processo.TempoRemanescente.ToString("00")}             | {processo.PrioridadeDinamica.ToString("00")}");
+            Console.WriteLine($"{processo.Ingresso}        | {processo.ProcessoId}     | {processo.TempoRemanescente.ToString("00")}             | {processo.PrioridadeDinamica.ToString("00")}");
         }
         Console.WriteLine("--------------------------------------------------------\n");
     }
