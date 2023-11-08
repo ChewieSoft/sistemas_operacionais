@@ -50,7 +50,7 @@ class Program
             int totalProcessos = int.Parse(lines[0]);
             for (int contador = 1; contador <= totalProcessos; contador++)
             {
-                string[] data = lines[contador].Split(' ');
+                string[] data = lines[contador].Split(';');
 
                 int ingresso = int.Parse(data[0]);
                 int tempoExecucao = int.Parse(data[1]);
