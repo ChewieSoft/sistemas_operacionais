@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System;
 using System.IO;
 using System.Threading;
+using System.Diagnostics;
 
 class Program
 {
@@ -37,6 +38,8 @@ class Program
             Thread.Sleep(CYCLE_TIME);
             cycle++;
         }
+
+        RunFCFS(listaProcessoRaw.Processos);
     }
 
     static ListaProcesso CarregarDados()
@@ -118,6 +121,21 @@ class Program
 
         listaProcesso.Processos.RemoveAll(p => p.TempoRemanescente == 0);
     }
+
+    static void RunFCFS(List<Processo> processos)
+    {
+        int currentTime = 0;
+        foreach (var processo in processos)
+        {
+            if (processo.Ingresso > currentTime)
+            {
+                currentTime = processo.Ingresso;
+            }
+            Console.WriteLine($"Executando processo {processo.ProcessoId} de {currentTime} até {currentTime + processo.TempoRemanescente}");
+            currentTime += processo.TempoRemanescente;
+        }
+    }
+
 
     static void ImprimirInfos(int cycle, ListaProcesso listaProcesso, Processo processo)
     {
