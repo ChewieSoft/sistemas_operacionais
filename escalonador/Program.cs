@@ -11,6 +11,10 @@ class Program
     private const int CYCLE_TIME = 200;
     public static int cycle = 0;
 
+    public static String ANSI_PURPLE = "\u001B[35m";
+    public static String ANSI_CYAN = "\u001B[36m";
+    public static String ANSI_RESET = "\u001B[0m";
+
     static void Main()
     {        
 
@@ -39,7 +43,7 @@ class Program
             cycle++;
         }
 
-        RunFCFS(listaProcessoRaw.Processos);
+        ExecutarFCFS(listaProcessoRaw.Processos);        
     }
 
     static ListaProcesso CarregarDados()
@@ -65,7 +69,7 @@ class Program
         }
         catch (IOException e)
         {
-            Console.WriteLine("Erro ao ler o arquivo: " + e.Message);
+            Console.WriteLine($"\u001b[91mErro ao ler o arquivo: {e.Message}\u001b[0m" );
         }
 
         return listaProcessoRaw;
@@ -136,20 +140,47 @@ class Program
         }
     }
 
+    static void ExecutarFCFS(List<Processo> processos)
+    {
+        int tempoTotal = 0;
+
+        Console.WriteLine("\u001b[93mIngresso\u001b[0m | \u001b[93mPID\u001b[0m   | \u001b[93mTempo Restante\u001b[0m | \u001b[93mPrioridade Dinamica\u001b[0m");
+        Console.WriteLine("--------------------------------------------------------");
+        foreach (var processo in processos)
+        {
+            
+            Console.WriteLine($"Executando o Processo {processo.ProcessoId}");
+            Console.WriteLine($"Tempo de Chegada: {processo.Ingresso }, Tempo de Execução: {processo.TempoExecucao}");
+
+            // Aguarde o tempo de chegada, se necessário
+            if (tempoTotal < processo.Ingresso)
+            {
+                Console.WriteLine($"Aguardando {processo.Ingresso - tempoTotal} unidades de tempo");
+                tempoTotal = processo.Ingresso;
+            }
+
+            // Execute o processo
+            tempoTotal += processo.TempoExecucao;
+            Console.WriteLine($"Tempo Total até agora: {tempoTotal}");
+            Console.WriteLine();
+        }
+    }
+
 
     static void ImprimirInfos(int cycle, ListaProcesso listaProcesso, Processo processo)
     {
-        Console.WriteLine($"Ciclo: {cycle}");
-        Console.WriteLine($"Processo ID: {processo.ProcessoId}");
-        Console.WriteLine($"Processo Qtd.: {listaProcesso.Processos.Count}\n");
+        Console.WriteLine($"\u001b[93mCiclo:\u001b[0m \u001b[92m{cycle}\u001b[0m");
+        Console.WriteLine($"\u001b[93mProcesso ID:\u001b[0m {ANSI_CYAN}{processo.ProcessoId}{ANSI_RESET}");
+        Console.WriteLine($"\u001b[93mProcesso Qtd.:\u001b[0m {listaProcesso.Processos.Count}\n");
     }
 
     static void Imprimir(ListaProcesso listaProcesso)
     {
-        Console.WriteLine("Ingresso | PID   | Tempo Restante | Prioridade Dinamica");
+        Console.WriteLine("\u001b[93mIngresso\u001b[0m | \u001b[93mPID\u001b[0m   | \u001b[93mTempo Restante\u001b[0m | \u001b[93mPrioridade Dinamica\u001b[0m");
+        Console.WriteLine("--------------------------------------------------------");
         foreach (Processo processo in listaProcesso.Processos)
         {
-            Console.WriteLine($"{processo.Ingresso}        | {processo.ProcessoId}     | {processo.TempoRemanescente.ToString("00")}             | {processo.PrioridadeDinamica.ToString("00")}");
+            Console.WriteLine($"{processo.Ingresso}        | {ANSI_CYAN}{processo.ProcessoId}{ANSI_RESET}     | {processo.TempoRemanescente.ToString("00")}             | {processo.PrioridadeDinamica.ToString("00")}");
         }
         Console.WriteLine("--------------------------------------------------------\n");
     }

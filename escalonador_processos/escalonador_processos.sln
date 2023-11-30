@@ -5,7 +5,9 @@ VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "escalonador_processos", "escalonador_processos.csproj", "{20E2ACD4-731E-4233-A9F6-D2E6BE52DF30}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "escalonador", "..\escalonador\escalonador.csproj", "{01054F01-5615-457E-A22A-04234E09D3C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "escalonador", "..\escalonador\escalonador.csproj", "{01054F01-5615-457E-A22A-04234E09D3C6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EstadosProcesso", "..\ATIVIDADE INDIVIDUAL AVALIATIVA\EstadosProcesso\EstadosProcesso.csproj", "{FF95D9C7-F357-4F88-8771-F47C6BC4363F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{01054F01-5615-457E-A22A-04234E09D3C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01054F01-5615-457E-A22A-04234E09D3C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01054F01-5615-457E-A22A-04234E09D3C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF95D9C7-F357-4F88-8771-F47C6BC4363F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF95D9C7-F357-4F88-8771-F47C6BC4363F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF95D9C7-F357-4F88-8771-F47C6BC4363F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF95D9C7-F357-4F88-8771-F47C6BC4363F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
