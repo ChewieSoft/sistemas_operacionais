@@ -14,6 +14,9 @@ class Program
     public static String ANSI_PURPLE = "\u001B[35m";
     public static String ANSI_CYAN = "\u001B[36m";
     public static String ANSI_RESET = "\u001B[0m";
+    public static String ANSI_YELLOW = "\u001B[33m";
+    public static String ANSI_LIGHT_YELLOW = "\u001B[93m";
+    public static String ANSI_GREEN = "\u001B[32m";
 
     static void Main()
     {        
@@ -143,15 +146,14 @@ class Program
     static void ExecutarFCFS(List<Processo> processos)
     {
         int tempoTotal = 0;
+        int totalProcessos = processos.Count;
+        int[] tempoEspera;
+        tempoEspera = new int[totalProcessos];
 
-        Console.WriteLine("\u001b[93mIngresso\u001b[0m | \u001b[93mPID\u001b[0m   | \u001b[93mTempo Restante\u001b[0m | \u001b[93mPrioridade Dinamica\u001b[0m");
+        Console.WriteLine("\u001b[93mIngresso\u001b[0m | \u001b[93mPID\u001b[0m   | \u001b[93mTempo de Execução\u001b[0m | \u001b[93mTempo Total (acumulado)\u001b[0m");
         Console.WriteLine("--------------------------------------------------------");
         foreach (var processo in processos)
         {
-            
-            Console.WriteLine($"Executando o Processo {processo.ProcessoId}");
-            Console.WriteLine($"Tempo de Chegada: {processo.Ingresso }, Tempo de Execução: {processo.TempoExecucao}");
-
             // Aguarde o tempo de chegada, se necessário
             if (tempoTotal < processo.Ingresso)
             {
@@ -159,13 +161,25 @@ class Program
                 tempoTotal = processo.Ingresso;
             }
 
+            tempoEspera[processo.ProcessoId-1] = tempoTotal;
             // Execute o processo
             tempoTotal += processo.TempoExecucao;
-            Console.WriteLine($"Tempo Total até agora: {tempoTotal}");
-            Console.WriteLine();
-        }
-    }
 
+            Console.WriteLine($"{processo.Ingresso}        | {ANSI_CYAN}{processo.ProcessoId}{ANSI_RESET}     | {processo.TempoExecucao.ToString("00")}                |{tempoTotal}");                       
+        }
+        Console.WriteLine("--------------------------------------------------------");
+
+        //Calcular a média do tempo de Espera
+
+        int soma = 0;
+        for (int i = 0; i < totalProcessos; i++)
+        {
+            soma += tempoEspera[i];
+        }
+            
+        Console.WriteLine($"{ANSI_LIGHT_YELLOW}Tempo médio de espera:{ANSI_RESET} {ANSI_GREEN}{soma / totalProcessos} unidades de tempo{ANSI_RESET}");
+        
+    }
 
     static void ImprimirInfos(int cycle, ListaProcesso listaProcesso, Processo processo)
     {
