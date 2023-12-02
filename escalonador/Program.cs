@@ -129,20 +129,6 @@ class Program
         listaProcesso.Processos.RemoveAll(p => p.TempoRemanescente == 0);
     }
 
-    static void RunFCFS(List<Processo> processos)
-    {
-        int currentTime = 0;
-        foreach (var processo in processos)
-        {
-            if (processo.Ingresso > currentTime)
-            {
-                currentTime = processo.Ingresso;
-            }
-            Console.WriteLine($"Executando processo {processo.ProcessoId} de {currentTime} até {currentTime + processo.TempoRemanescente}");
-            currentTime += processo.TempoRemanescente;
-        }
-    }
-
     static void ExecutarFCFS(List<Processo> processos)
     {
         int tempoTotal = 0;
@@ -188,7 +174,7 @@ class Program
 
     static void ImprimirInfos(int cycle, ListaProcesso listaProcesso, Processo processo)
     {
-        Console.WriteLine($"\u001b[93mCiclo:\u001b[0m \u001b[92m{cycle}\u001b[0m");
+        Console.WriteLine($"\u001b[93mCiclo:\u001b[0m \u001b[92m{cycle + 1}\u001b[0m");
         Console.WriteLine($"\u001b[93mProcesso ID:\u001b[0m {ANSI_CYAN}{processo.ProcessoId}{ANSI_RESET}");
         Console.WriteLine($"\u001b[93mProcesso Qtd.:\u001b[0m {listaProcesso.Processos.Count}\n");
     }
