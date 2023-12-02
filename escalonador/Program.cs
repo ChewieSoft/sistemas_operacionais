@@ -150,14 +150,19 @@ class Program
         int[] tempoEspera;
         tempoEspera = new int[totalProcessos];
 
+        Console.WriteLine($"::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");        
+        Console.WriteLine($":::::::::::: {ANSI_YELLOW}ALGORITMO FIRST COME, FIRST SERVED{ANSI_RESET} ::::::::::::::");
+        Console.WriteLine($"::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
+        Console.WriteLine();
         Console.WriteLine("\u001b[93mIngresso\u001b[0m | \u001b[93mPID\u001b[0m   | \u001b[93mTempo de Execução\u001b[0m | \u001b[93mTempo Total (acumulado)\u001b[0m");
-        Console.WriteLine("--------------------------------------------------------");
+        Console.WriteLine("--------------------------------------------------------------");
         foreach (var processo in processos)
         {
             // Aguarde o tempo de chegada, se necessário
             if (tempoTotal < processo.Ingresso)
             {
-                Console.WriteLine($"Aguardando {processo.Ingresso - tempoTotal} unidades de tempo");
+                Console.WriteLine($"::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
+                Console.WriteLine($"{ANSI_PURPLE}*************** Aguardando {processo.Ingresso - tempoTotal} unidades de tempo ***************{ANSI_RESET}");
                 tempoTotal = processo.Ingresso;
             }
 
@@ -167,7 +172,7 @@ class Program
 
             Console.WriteLine($"{processo.Ingresso}        | {ANSI_CYAN}{processo.ProcessoId}{ANSI_RESET}     | {processo.TempoExecucao.ToString("00")}                |{tempoTotal}");                       
         }
-        Console.WriteLine("--------------------------------------------------------");
+        Console.WriteLine("--------------------------------------------------------------");
 
         //Calcular a média do tempo de Espera
 
