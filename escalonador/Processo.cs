@@ -24,5 +24,12 @@ namespace escalonador
             PrioridadeEstatica = prioridadeEstatica;
             PrioridadeDinamica = prioridadeEstatica;
         }
+
+        // Sobrecarga de Processo para FCFS
+        public Processo(int processoId, int tempoExecucao) {
+            ProcessoId = processoId;
+            TempoExecucao = tempoExecucao;
+        }
+
     }
 }

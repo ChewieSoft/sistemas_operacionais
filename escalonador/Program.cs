@@ -22,6 +22,7 @@ class Program
     {        
 
         ListaProcesso listaProcessoRaw = CarregarDados();
+        ListaProcesso listaProcessoFCFS = CarregarDadosFCFS();
         ListaProcesso listaProcesso = new ListaProcesso();
         Processo processo = null;
 
@@ -46,7 +47,7 @@ class Program
             cycle++;
         }
 
-        ExecutarFCFS(listaProcessoRaw.Processos);        
+        ExecutarFCFS(listaProcessoFCFS.Processos);        
     }
 
     static ListaProcesso CarregarDados()
@@ -73,6 +74,34 @@ class Program
         catch (IOException e)
         {
             Console.WriteLine($"\u001b[91mErro ao ler o arquivo: {e.Message}\u001b[0m" );
+        }
+
+        return listaProcessoRaw;
+    }
+
+    static ListaProcesso CarregarDadosFCFS()
+    {
+        ListaProcesso listaProcessoRaw = new ListaProcesso();
+
+        try
+        {
+            string[] lines = File.ReadAllLines("ProcessosFCFS.txt");
+
+            int totalProcessos = int.Parse(lines[0]);
+            for (int contador = 1; contador <= totalProcessos; contador++)
+            {
+                string[] data = lines[contador].Split(';');
+
+                int ingresso = int.Parse(data[0]);
+                int tempoExecucao = int.Parse(data[1]);                
+
+                Processo processo = new Processo(ingresso, tempoExecucao);
+                listaProcessoRaw.InserirProcesso(processo);
+            }
+        }
+        catch (IOException e)
+        {
+            Console.WriteLine($"\u001b[91mErro ao ler o arquivo: {e.Message}\u001b[0m");
         }
 
         return listaProcessoRaw;
@@ -140,7 +169,7 @@ class Program
         Console.WriteLine($":::::::::::: {ANSI_YELLOW}ALGORITMO FIRST COME, FIRST SERVED{ANSI_RESET} ::::::::::::::");
         Console.WriteLine($"::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
         Console.WriteLine();
-        Console.WriteLine("\u001b[93mIngresso\u001b[0m | \u001b[93mPID\u001b[0m   | \u001b[93mTempo de Execução\u001b[0m | \u001b[93mTempo Total (acumulado)\u001b[0m");
+        Console.WriteLine("\u001b[93mPID\u001b[0m   | \u001b[93mTempo de Execução\u001b[0m | \u001b[93mTempo Total (acumulado)\u001b[0m");
         Console.WriteLine("--------------------------------------------------------------");
         foreach (var processo in processos)
         {
@@ -156,7 +185,7 @@ class Program
             // Execute o processo
             tempoTotal += processo.TempoExecucao;
 
-            Console.WriteLine($"{processo.Ingresso}        | {ANSI_CYAN}{processo.ProcessoId}{ANSI_RESET}     | {processo.TempoExecucao.ToString("00")}                |{tempoTotal}");                       
+            Console.WriteLine($"{ANSI_CYAN}{processo.ProcessoId}{ANSI_RESET}     | {processo.TempoExecucao.ToString("00")}                |{tempoTotal}");                       
         }
         Console.WriteLine("--------------------------------------------------------------");
 
