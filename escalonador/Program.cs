@@ -24,7 +24,7 @@ class Program
         ListaProcesso listaProcessoRaw = CarregarDados();
         ListaProcesso listaProcessoFCFS = CarregarDadosFCFS();
         ListaProcesso listaProcesso = new ListaProcesso();
-        Processo processo = null;
+        Processo processo = null;        
 
         while (true)
         {
@@ -47,7 +47,7 @@ class Program
             cycle++;
         }
 
-        ExecutarFCFS(listaProcessoFCFS.Processos);        
+        ExecutarFCFS(listaProcessoFCFS.Processos);
     }
 
     static ListaProcesso CarregarDados()
@@ -169,7 +169,7 @@ class Program
         Console.WriteLine($":::::::::::: {ANSI_YELLOW}ALGORITMO FIRST COME, FIRST SERVED{ANSI_RESET} ::::::::::::::");
         Console.WriteLine($"::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
         Console.WriteLine();
-        Console.WriteLine("\u001b[93mPID\u001b[0m   | \u001b[93mTempo de Execução\u001b[0m | \u001b[93mTempo Total (acumulado)\u001b[0m");
+        Console.WriteLine($"{ANSI_LIGHT_YELLOW}PID{ANSI_RESET}   | \u001b[93mTempo de Execução\u001b[0m | \u001b[93mTempo Total (acumulado)\u001b[0m");
         Console.WriteLine("--------------------------------------------------------------");
         foreach (var processo in processos)
         {
@@ -203,6 +203,11 @@ class Program
 
     static void ImprimirInfos(int cycle, ListaProcesso listaProcesso, Processo processo)
     {
+
+        Console.WriteLine($"::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
+        Console.WriteLine($"::::::::::::::: {ANSI_YELLOW}ESCALONAMENTO POR PRIORIDADE{ANSI_RESET} :::::::::::::::::");
+        Console.WriteLine($"::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
+        Console.WriteLine();
         Console.WriteLine($"\u001b[93mCiclo:\u001b[0m \u001b[92m{cycle + 1}\u001b[0m");
         Console.WriteLine($"\u001b[93mProcesso ID:\u001b[0m {ANSI_CYAN}{processo.ProcessoId}{ANSI_RESET}");
         Console.WriteLine($"\u001b[93mProcesso Qtd.:\u001b[0m {listaProcesso.Processos.Count}\n");
@@ -211,12 +216,12 @@ class Program
     static void Imprimir(ListaProcesso listaProcesso)
     {
         Console.WriteLine("\u001b[93mIngresso\u001b[0m | \u001b[93mPID\u001b[0m   | \u001b[93mTempo Restante\u001b[0m | \u001b[93mPrioridade Dinamica\u001b[0m");
-        Console.WriteLine("--------------------------------------------------------");
+        Console.WriteLine("--------------------------------------------------------------");
         foreach (Processo processo in listaProcesso.Processos)
         {
-            Console.WriteLine($"{processo.Ingresso}        | {ANSI_CYAN}{processo.ProcessoId}{ANSI_RESET}     | {processo.TempoRemanescente.ToString("00")}             | {processo.PrioridadeDinamica.ToString("00")}");
+            Console.WriteLine($"{processo.Ingresso.ToString("00")}        | {ANSI_CYAN}{processo.ProcessoId}{ANSI_RESET}     | {processo.TempoRemanescente.ToString("00")}             | {processo.PrioridadeDinamica.ToString("00")}");
         }
-        Console.WriteLine("--------------------------------------------------------\n");
+        Console.WriteLine("--------------------------------------------------------------\n");
     }
 }
 
